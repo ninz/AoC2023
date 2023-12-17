@@ -2,9 +2,9 @@
 input = File.read("input.txt").split
 
 solution = input.reduce(0) do |memo, word|
-	new_word = word.delete "a-z"
-	code = (new_word[0] + new_word[-1]).to_i
-	memo + code
+  new_word = word.delete "a-z"
+  code = (new_word[0] + new_word[-1]).to_i
+  memo + code
 end
 
 puts solution

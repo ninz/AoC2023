@@ -9,17 +9,17 @@
 input = File.read("input.txt").split("\n")
 
 def max_colour(game_input, colour)
-	game_input.scan(/(\d+) #{colour}/).flatten.map(&:to_i).max || 0 # || 0 in case nil
+  game_input.scan(/(\d+) #{colour}/).flatten.map(&:to_i).max || 0 # || 0 in case nil
 end
 
 output = input.reduce(0) do |sum, game|
-	game_num = /Game (\d+):/.match(game)[1].to_i
+  game_num = /Game (\d+):/.match(game)[1].to_i
 
-	green_max = max_colour(game, 'green')
-	blue_max = max_colour(game, 'blue')
-	red_max = max_colour(game, 'red')
+  green_max = max_colour(game, 'green')
+  blue_max = max_colour(game, 'blue')
+  red_max = max_colour(game, 'red')
 
-	red_max <= 12 && green_max <= 13 && blue_max <= 14 ? sum + game_num : sum
+  red_max <= 12 && green_max <= 13 && blue_max <= 14 ? sum + game_num : sum
 end
 
 puts output
