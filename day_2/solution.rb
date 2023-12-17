@@ -12,14 +12,19 @@ def max_colour(game_input, colour)
   game_input.scan(/(\d+) #{colour}/).flatten.map(&:to_i).max || 0 # || 0 in case nil
 end
 
-output = input.reduce(0) do |sum, game|
+part_2 = 0
+
+part_1 = input.reduce(0) do |sum, game|
   game_num = /Game (\d+):/.match(game)[1].to_i
 
   green_max = max_colour(game, 'green')
   blue_max = max_colour(game, 'blue')
   red_max = max_colour(game, 'red')
 
+  part_2 += green_max * blue_max * red_max
+
   red_max <= 12 && green_max <= 13 && blue_max <= 14 ? sum + game_num : sum
 end
 
-puts output
+puts "Part 1: #{part_1}"
+puts "Part 2: #{part_2}"
